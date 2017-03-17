@@ -8,6 +8,17 @@ int pin_state;
 extern MqttConnector* mqtt;
 extern char myName[40];
 
+#include <Servo.h>
+Servo myservo;
+#define SERVO 14
+
+
+void trig_servo() {
+  myservo.write(10);
+  delay(1000);
+  myservo.write(50);
+}
+
 void register_receive_hooks() {
   mqtt->on_subscribe([&](MQTT::Subscribe * sub) -> void {
     Serial.printf("myName = %s \r\n", myName);
@@ -17,6 +28,8 @@ void register_receive_hooks() {
 
   mqtt->on_before_message_arrived_once([&](void) {
     pinMode(15, OUTPUT);
+    myservo.attach(SERVO);
+    myservo.write(50);
   });
 
   mqtt->on_message([&](const MQTT::Publish & pub) { });
@@ -30,11 +43,13 @@ void register_receive_hooks() {
         digitalWrite(relayPin, HIGH);
         digitalWrite(LED_BUILTIN, LOW);
         pin_state = 1;
+        trig_servo();
       }
       else if (payload == "OFF") {
         digitalWrite(relayPin, LOW);
         digitalWrite(LED_BUILTIN, HIGH);
         pin_state = 0;
+        trig_servo();
       }
     }
     else if (cmd == "$/reboot") {

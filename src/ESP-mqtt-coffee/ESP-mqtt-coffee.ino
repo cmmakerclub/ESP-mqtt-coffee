@@ -11,7 +11,7 @@
 
 /* WIFI INFO */
 #ifndef WIFI_SSID
-#define WIFI_SSID        "NAzT"
+#define WIFI_SSID        "ESPERT-3020"
 #define WIFI_PASSWORD    "espertap"
 #endif
 
