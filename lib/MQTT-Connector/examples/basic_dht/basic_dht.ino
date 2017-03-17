@@ -11,8 +11,8 @@
 
 /* WIFI INFO */
 #ifndef WIFI_SSID
-#define WIFI_SSID        "NAzT"
-#define WIFI_PASSWORD    "espertap"
+#define WIFI_SSID        "DEVICES-AP"
+#define WIFI_PASSWORD    "devicenetwork"
 #endif
 
 String MQTT_HOST        = "mqtt.cmmc.io";
@@ -22,7 +22,7 @@ String MQTT_CLIENT_ID   = "";
 String MQTT_PREFIX      = "CMMC";
 int    MQTT_PORT        = 1883;
 
-int PUBLISH_EVERY       = 5000;
+int PUBLISH_EVERY       = 1000;
 
 MqttConnector *mqtt;
 
@@ -36,8 +36,6 @@ void init_hardware()
 }
 
 void init_wifi() {
-   WiFi.mode(WIFI_OFF);
-   WiFi.mode(WIFI_STA);
    WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
    while(WiFi.status() != WL_CONNECTED) {
      Serial.printf ("Connecting to %s:%s\r\n", WIFI_SSID, WIFI_PASSWORD);

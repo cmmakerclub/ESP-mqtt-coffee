@@ -1,6 +1,3 @@
-#include <Arduino.h>
-#include "MqttConnector.h"
-
 extern String MQTT_CLIENT_ID;
 
 #define relayPin 15
