@@ -8,7 +8,7 @@ float t_dht, h_dht = 0;
 DHT dht(12, DHT22);
 
 
-#define DEVICE_NAME      "COFEE-BREWER"
+#define DEVICE_NAME      "coffee"
 #define DEVICE_NAME_SIZE 40
 
 char myName[DEVICE_NAME_SIZE];
